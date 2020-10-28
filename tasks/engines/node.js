@@ -55,7 +55,7 @@ module.exports = function(o, allDone) {
 		ttf: function(done) {
 			getFont('svg', function(svgFont) {
 				var font = svg2ttf(svgFont, {});
-				font = new Buffer(font.buffer);
+				font = Buffer.from(font.buffer);
 				autohintTtfFont(font, function(hintedFont) {
 					// ttfautohint is optional
 					if (hintedFont) {
@@ -70,7 +70,7 @@ module.exports = function(o, allDone) {
 		woff: function(done) {
 			getFont('ttf', function(ttfFont) {
 				var font = ttf2woff(new Uint8Array(ttfFont), {});
-				font = new Buffer(font.buffer);
+				font = Buffer.from(font.buffer);
 				fonts.woff = font;
 				done(font);
 			});
@@ -84,7 +84,7 @@ module.exports = function(o, allDone) {
 		eot: function(done) {
 			getFont('ttf', function(ttfFont) {
 				var font = ttf2eot(new Uint8Array(ttfFont));
-				font = new Buffer(font.buffer);
+				font = Buffer.from(font.buffer);
 				fonts.eot = font;
 				done(font);
 			});
